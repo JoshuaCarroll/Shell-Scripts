@@ -43,7 +43,7 @@
 set -euo pipefail
 
 FOLDER="${1:?Usage: $0 <folder> [prefix] [start_pair] [digits] [--dry-run] [--window SECONDS] [--threshold N]}"
-PREFIX="${2:-card}"
+PREFIX="${2:-$(date +"%Y-%m-%d-%H-%M")}"
 START="${3:-1}"
 DIGITS="${4:-5}"
 DRYRUN="false"
