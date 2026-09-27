@@ -43,7 +43,13 @@
 set -euo pipefail
 
 FOLDER="${1:?Usage: $0 <folder> [prefix] [start_pair] [digits] [--dry-run] [--window SECONDS] [--threshold N]}"
-PREFIX="${2:-$(date +"%Y-%m-%d-%H-%M")}"
+if [[ $# -ge 2 ]]; then
+    PREFIX="$2"
+else
+    DEFAULT_PREFIX="$(date +"%Y-%m-%d-%H-%M")"
+    read -r -p "Prefix [$DEFAULT_PREFIX]: " PREFIX_INPUT || PREFIX_INPUT=""
+    PREFIX="${PREFIX_INPUT:-$DEFAULT_PREFIX}"
+fi
 START="${3:-1}"
 DIGITS="${4:-5}"
 DRYRUN="false"
